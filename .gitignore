@@ -1,0 +1,6 @@
+
+*.suo
+*.vsidx
+.vs/
+[Dd]ebug/
+[Oo]bj/
