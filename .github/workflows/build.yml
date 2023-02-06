@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [ "main", "develop", "feature/**" ]
 
-env:
-  SOURCE_DIR: ./BookStore/BookStore.sln
-
 jobs:
   build:
 
@@ -21,11 +18,8 @@ jobs:
       with:
         dotnet-version: 3.1.x
     - name: Restore dependencies
-      run: dotnet restore 
-      working_directory: ${{SOURCE_DIR}}
+      run: dotnet restore ./BookStore/BookStore.sln
     - name: Build
-      run: dotnet build --no-restore 
-      working_directory: ${{SOURCE_DIR}}
+      run: dotnet build --no-restore ./BookStore/BookStore.sln
     - name: Test
-      run: dotnet test --no-build --verbosity normal
-      working_directory: ${{SOURCE_DIR}}
+      run: dotnet test --no-build --verbosity normal ./BookStore/BookStore.sln
