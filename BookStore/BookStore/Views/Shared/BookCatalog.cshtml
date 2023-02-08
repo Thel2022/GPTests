@@ -6,9 +6,11 @@
 
         <div class="col">
           <div class="card bg-light shadow-sm">
-            <img src="@Model.Cover" width="100%" height="225" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></img>
+            <img src="@Model.Cover" width="100%" height="400" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></img>
 
             <div class="card-body">
+                    <h6 style="display:inline;float:center;">@Model.Author</h6>
+                    <br>
                     <h5 style="display:inline;float:left;">@Model.Title</h5>
                     <hr style="clear:both;"/>
             <p class="card-text">@Model.Annotation</p>
