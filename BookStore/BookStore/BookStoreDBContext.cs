@@ -8,7 +8,7 @@ namespace BookStore
 {
     public class BookStoreDBContext : DbContext
     {
-        public DbSet<Book> Books { get; set; } = null!;
+        public DbSet<Book> BooksDB { get; set; } = null!;
 
         public BookStoreDBContext()
         {
@@ -17,7 +17,7 @@ namespace BookStore
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=localhost;Database=BSDB1;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=localhost;Database=BooksDB;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
