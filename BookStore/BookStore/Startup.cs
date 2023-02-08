@@ -27,11 +27,6 @@ namespace BookStore
             services.AddControllersWithViews();
             services.AddDbContext<BookStoreDBContext>();
             services.AddTransient<IStore, Store>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddMvc(options => options.EnableEndpointRouting = false);
-            services.AddMemoryCache();
-            services.AddSession();
-            services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
