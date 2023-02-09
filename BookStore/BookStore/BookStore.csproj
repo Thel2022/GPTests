@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Images\Covers\IFJW.jpg" />
+    <None Include="wwwroot\Images\Covers\JRRTLOTR.jpg" />
+    <None Include="wwwroot\Images\Covers\KGWW.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.31" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.31">
       <PrivateAssets>all</PrivateAssets>
