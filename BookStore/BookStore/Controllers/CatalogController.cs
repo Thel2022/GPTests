@@ -2,36 +2,36 @@
 using System.Collections.Generic;
 using System;
 using BookStore.Models;
+using BookStore.Interfaces;
+using BookStore.ViewModels;
 
 namespace BookStore.Controllers
 {
     public class CatalogController : Controller
     {
-        private readonly IStore _store;
-        BooksViewModel viewModel;
-        public CatalogController(IStore store)
+        private readonly IStoreBooks _store;
+
+        public CatalogController(IStoreBooks store)
         {
             _store = store;
         }
 
-        private IEnumerable<Book> GetData()
+        [Route("Home/Catalog")]
+        [HttpGet]
+        public ViewResult Catalog()
+        {
+            var viewModel = GetData();
+            return View(viewModel);
+        }
+        private BooksViewModel GetData()
         {
             
             IEnumerable<Book> books = null;
                     
             books = _store.Books;
- 
-            viewModel = new BooksViewModel(books);
                
-            return books;
+            return new BooksViewModel(books);
         }
 
-        [Route("Home/Catalog")]   // attribute routing
-        [HttpGet]
-        public ViewResult Catalog()
-        {
-            GetData();
-            return View(viewModel);
-        }
     }
 }

@@ -1,4 +1,5 @@
-using BookStore.Models;
+using BookStore.Interfaces;
+using BookStore.Sevices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -26,7 +27,7 @@ namespace BookStore
         {
             services.AddControllersWithViews();
             services.AddDbContext<BookStoreDBContext>();
-            services.AddTransient<IStore, Store>();
+            services.AddTransient<IStoreBooks, StoreBooks>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

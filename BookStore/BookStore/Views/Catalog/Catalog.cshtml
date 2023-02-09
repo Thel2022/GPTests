@@ -28,7 +28,7 @@
   <div class="album py-5 bg-dark">
     <div class="container">
        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-         @{foreach (Book book in Model.IStore)
+         @{foreach (Book book in Model.Books)
             {
                 @Html.Partial("BookCatalog", book);
             }
