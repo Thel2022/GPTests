@@ -27,7 +27,7 @@ namespace BookStore
         {
             services.AddControllersWithViews();
             services.AddDbContext<BookStoreDBContext>();
-            services.AddTransient<IStoreBooks, StoreBooks>();
+            services.AddScoped<IStoreBooks, StoreBooks>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
