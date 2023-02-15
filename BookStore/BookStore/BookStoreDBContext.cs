@@ -73,8 +73,7 @@ namespace BookStore
                     Weight = 530,
                     Price = 40,
                     Cover = "/Images/Covers/KGWW.jpg"
-                });
-        }
+                });        }
 
 
     }
