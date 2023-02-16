@@ -5,8 +5,8 @@ namespace BookStore.Sevices
 {
     public class UseCart : IUseCart
     {
-        private readonly BookStoreDBContext _dbcontext;
-        public UseCart(BookStoreDBContext _content)
+        private readonly BookStoreDbContext _dbcontext;
+        public UseCart(BookStoreDbContext _content)
         {
             _dbcontext = _content;
         }

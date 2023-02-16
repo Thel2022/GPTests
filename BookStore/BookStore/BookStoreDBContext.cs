@@ -6,19 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStore
 {
-    public class BookStoreDBContext : DbContext
+    public class BookStoreDbContext : DbContext
     {
-        public DbSet<Book> BooksDB { get; set; } = null!;
+        public DbSet<Book> BooksTb { get; set; } = null!;
 
-        public BookStoreDBContext()
-        {
-            Database.EnsureCreated();
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server=localhost;Database=BooksDB;Trusted_Connection=True;");
-        }
+        public BookStoreDbContext(DbContextOptions<BookStoreDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -38,7 +30,8 @@ namespace BookStore
                     Format = "18x12",
                     Weight = 311,
                     Price = 27,
-                    Cover = "/Images/Covers/IFJW.jpg"
+                    Cover = "/Images/Covers/IFJW.jpg",
+                    InStock = 100
                 },
                 new Book
                 {
@@ -55,7 +48,8 @@ namespace BookStore
                     Format = "22x14,5",
                     Weight = 1200,
                     Price = 33,
-                    Cover = "/Images/Covers/JRRTLOTR.jpg"
+                    Cover = "/Images/Covers/JRRTLOTR.jpg",
+                    InStock = 200
                 },
                 new Book
                 {
@@ -72,8 +66,11 @@ namespace BookStore
                     Format = "70x90",
                     Weight = 530,
                     Price = 40,
-                    Cover = "/Images/Covers/KGWW.jpg"
+                    Cover = "/Images/Covers/KGWW.jpg",
+                    InStock = 20
                 });
+
+            modelBuilder.Entity<Book>().Property(p => p.Price).HasColumnType("decimal(18,4)");
         }
 
 

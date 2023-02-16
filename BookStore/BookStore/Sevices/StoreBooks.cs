@@ -9,14 +9,14 @@ namespace BookStore.Sevices
 {
     public class StoreBooks : IStoreBooks
     {
-        private readonly BookStoreDBContext _dbcontext;
+        private readonly BookStoreDbContext _dbcontext;
 
-        public StoreBooks(BookStoreDBContext _content)
+        public StoreBooks(BookStoreDbContext _content)
         {
             _dbcontext = _content;
         }
-        public IEnumerable<Book> Books => _dbcontext.BooksDB;
-        public Book GetAll(Guid id) => _dbcontext.BooksDB.FirstOrDefault(p => p.Id == id);
+        public IEnumerable<Book> Books => _dbcontext.BooksTb;
+        public Book GetAll(Guid id) => _dbcontext.BooksTb.FirstOrDefault(p => p.Id == id);
 
 
     }

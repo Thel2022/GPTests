@@ -25,8 +25,9 @@ namespace BookStore
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<BookStoreDbContext>(options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
             services.AddControllersWithViews();
-            services.AddDbContext<BookStoreDBContext>();
+            services.AddDbContext<BookStoreDbContext>();
             services.AddScoped<IStoreBooks, StoreBooks>();
         }
 
