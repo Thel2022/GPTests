@@ -18,6 +18,7 @@ namespace BookStore.Models
         public int Weight { get; set; }
         public decimal Price { get; set; }
         public string Cover { get; set; }
+        public int InStock { get; set; }
 
     }
 }
