@@ -6,19 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStore
 {
-    public class BookStoreDBContext : DbContext
+    public class BookStoreDbContext : DbContext
     {
-        public DbSet<Book> BooksDB { get; set; } = null!;
+        public DbSet<Book> BooksTb { get; set; } = null!;
 
-        public BookStoreDBContext()
-        {
-            Database.EnsureCreated();
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server=localhost;Database=BooksDB;Trusted_Connection=True;");
-        }
+        public BookStoreDbContext(DbContextOptions<BookStoreDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -74,6 +66,8 @@ namespace BookStore
                     Price = 40,
                     Cover = "/Images/Covers/KGWW.jpg"
                 });
+
+            modelBuilder.Entity<Book>().Property(p => p.Price).HasColumnType("decimal(18,4)");
         }
 
 
