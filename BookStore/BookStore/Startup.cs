@@ -28,7 +28,10 @@ namespace BookStore
             services.AddDbContext<BookStoreDbContext>(options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
             services.AddControllersWithViews();
             services.AddDbContext<BookStoreDbContext>();
-            services.AddScoped<IStoreBooks, StoreBooks>();
+            services.AddScoped<ICatalog, Catalog>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sp => Cart.GetCart(sp));
+            services.AddSession();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -44,6 +47,7 @@ namespace BookStore
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 
@@ -55,6 +59,10 @@ namespace BookStore
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                BookStoreDbContext content = scope.ServiceProvider.GetRequiredService<BookStoreDbContext>();
+            }
         }
     }
 }

@@ -16,6 +16,8 @@
             <p class="card-text">@Model.Annotation</p>
               <div class="d-flex justify-content-between align-items-center">
                     <h6>@Model.Price.ToString("c", new CultureInfo("ru-RU"))</h6>
+                    <br>
+                    <h6 style="display:inline;float:right;">@Model.InStock шт</h6>
                     <div class="btn-group">
                         <a class="btn btn-sm btn-success" asp-controller="Cart" asp-action="addToCart" asp-route-id="@Model.Id">Добавить в корзину</a>
                     </div>

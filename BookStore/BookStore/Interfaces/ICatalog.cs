@@ -4,7 +4,7 @@ using BookStore.Models;
 
 namespace BookStore.Interfaces
 {
-    public interface IStoreBooks
+    public interface ICatalog
     {
         IEnumerable<Book> Books { get; }
         Book GetAll(Guid id);
