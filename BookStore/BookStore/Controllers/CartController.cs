@@ -24,9 +24,9 @@ namespace BookStore.Controllers
             var items = _cart.BooksInThisCart();
             _cart.BooksInCart = items;
 
-            var obj = new CartViewModel { cart = _cart };
+            var viewModel = new CartViewModel { cart = _cart };
 
-            return View(obj);
+            return View(viewModel);
         }
 
         public RedirectToActionResult AddToCart(Guid id)

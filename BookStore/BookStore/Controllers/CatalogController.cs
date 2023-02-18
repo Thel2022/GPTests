@@ -11,6 +11,15 @@ namespace BookStore.Controllers
     {
         private readonly ICatalog _store;
 
+        private BooksViewModel GetData()
+        {
+
+            IEnumerable<Book> books = null;
+
+            books = _store.Books;
+
+            return new BooksViewModel(books);
+        }
         public CatalogController(ICatalog store)
         {
             _store = store;
@@ -23,15 +32,5 @@ namespace BookStore.Controllers
             var viewModel = GetData();
             return View(viewModel);
         }
-        private BooksViewModel GetData()
-        {
-            
-            IEnumerable<Book> books = null;
-                    
-            books = _store.Books;
-               
-            return new BooksViewModel(books);
-        }
-
     }
 }
