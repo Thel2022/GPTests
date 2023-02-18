@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace BookStore.Sevices
 {
-    public class StoreBooks : IStoreBooks
+    public class Catalog : ICatalog
     {
         private readonly BookStoreDbContext _dbcontext;
 
-        public StoreBooks(BookStoreDbContext _content)
+        public Catalog(BookStoreDbContext _content)
         {
             _dbcontext = _content;
         }

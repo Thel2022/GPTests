@@ -9,7 +9,7 @@ namespace BookStore
     public class BookStoreDbContext : DbContext
     {
         public DbSet<Book> BooksTb { get; set; } = null!;
-
+        public DbSet<OrderedBooksInCart> OrderedBooksInCartTb { get; set; }
         public BookStoreDbContext(DbContextOptions<BookStoreDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

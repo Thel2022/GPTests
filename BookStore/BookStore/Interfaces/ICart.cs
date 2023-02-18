@@ -1,6 +1,6 @@
 ﻿namespace BookStore.Interfaces
 {
-    public interface IUseCart
+    public interface ICart
     {
     }
 }

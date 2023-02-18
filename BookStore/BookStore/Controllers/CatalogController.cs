@@ -9,9 +9,9 @@ namespace BookStore.Controllers
 {
     public class CatalogController : Controller
     {
-        private readonly IStoreBooks _store;
+        private readonly ICatalog _store;
 
-        public CatalogController(IStoreBooks store)
+        public CatalogController(ICatalog store)
         {
             _store = store;
         }
