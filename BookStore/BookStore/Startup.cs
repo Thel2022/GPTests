@@ -29,8 +29,8 @@ namespace BookStore
             services.AddControllersWithViews();
             services.AddDbContext<BookStoreDbContext>();
             services.AddScoped<ICatalog, Catalog>();
+            services.AddScoped<ICart, Cart>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped(sp => Cart.GetCart(sp));
             services.AddSession();
         }
 

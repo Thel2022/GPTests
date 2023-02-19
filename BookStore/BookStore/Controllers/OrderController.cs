@@ -7,6 +7,7 @@ namespace BookStore.Controllers
     {
         public IActionResult OrderFirstStep()
         {
+            //ModelState.IsValid
             var viewModel = new OrderViewModel();
             return View(viewModel);
         }

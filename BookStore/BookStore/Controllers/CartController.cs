@@ -10,9 +10,9 @@ namespace BookStore.Controllers
     public class CartController : Controller
     {
         private readonly ICatalog _catalog;
-        private readonly Cart _cart;
+        private readonly ICart _cart;
 
-        public CartController(ICatalog catalog, Cart cart)
+        public CartController(ICatalog catalog, ICart cart)
         {
             _catalog = catalog;
             _cart = cart;

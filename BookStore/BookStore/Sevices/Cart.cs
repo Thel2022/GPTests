@@ -18,13 +18,12 @@ namespace BookStore.Sevices
         {
             _dbcontext = _content;
         }
-        public static Cart GetCart(IServiceProvider services)
+        public Cart GetCart(IServiceProvider services)
         {
             ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
-            var context = services.GetService<BookStoreDbContext>();
             string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
             session.SetString("CartId", cartId);
-            return new Cart(context) { CartId = cartId };
+            return new Cart(_dbcontext) { CartId = cartId };
         }
         public void AddToCart(Book book)
         {
