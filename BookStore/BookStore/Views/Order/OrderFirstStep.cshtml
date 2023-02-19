@@ -12,10 +12,10 @@
     }
 </style>
 
-<div class="row bg-dark offset-3 col-md-5 g-3">
-    <h4 class="header text-light">Оформление заказа</h4>
-    <p class="text-light">После обработки заказа вы будете переведены на страницу оплаты.</p>
-<form asp-action="Checkout" method="post" class="form-horizontal">
+<div class="row bg-white offset-3 col-md-5 g-3">
+    <h4 class="header text">Оформление заказа</h4>
+    <p class="text">После обработки заказа вы будете переведены на страницу оплаты.</p>
+<form asp-action="OrderSecondStep" method="post" class="form-horizontal">
   <div class="form-group">
     <input asp-for="order.ClientName" class="form-control" placeholder="Введите свое имя">
   </div>

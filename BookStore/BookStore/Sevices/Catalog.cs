@@ -18,6 +18,5 @@ namespace BookStore.Sevices
         public IEnumerable<Book> Books => _dbcontext.BooksTb;
         public Book GetAll(Guid id) => _dbcontext.BooksTb.FirstOrDefault(p => p.Id == id);
 
-
     }
 }

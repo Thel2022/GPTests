@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookStore.Models
 {
@@ -14,5 +15,8 @@ namespace BookStore.Models
         [StringLength(50, MinimumLength = 3)]
         [Required(ErrorMessage = "Длина адреса не менее 3-ух символов")]
         public string Email { get; set; }
+
+        public Guid Id { get; set; }
+        public DateTime OrderTime { get; set; }
     }
 }
