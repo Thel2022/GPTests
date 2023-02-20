@@ -1,4 +1,5 @@
-﻿using BookStore.Sevices;
+﻿using BookStore.Interfaces;
+using BookStore.Sevices;
 
 namespace BookStore.ViewModels
 {
