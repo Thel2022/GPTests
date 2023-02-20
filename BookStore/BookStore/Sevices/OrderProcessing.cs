@@ -8,8 +8,13 @@ namespace BookStore.Sevices
     public class OrderProcessing : IOrderProcessing
     {
         private readonly BookStoreDbContext _dbcontext;
-        private readonly ICart _cart;
+        private readonly Cart _cart;
         public IEnumerable<Order> Orders => _dbcontext.OrderTb;
+        public OrderProcessing(BookStoreDbContext _context, Cart cart)
+        {
+            _dbcontext = _context;
+            _cart = cart;
+        }
         public void CreateOrder(Order order)
         {
             order.OrderTime = DateTime.Now;

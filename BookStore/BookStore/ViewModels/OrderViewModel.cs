@@ -9,9 +9,7 @@ namespace BookStore.ViewModels
 {
     public class OrderViewModel
     {
-
         public Order order { get; set; }
-
 
     }
 }

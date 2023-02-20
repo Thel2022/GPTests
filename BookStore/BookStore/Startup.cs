@@ -1,4 +1,5 @@
 using BookStore.Interfaces;
+using BookStore.Models;
 using BookStore.Sevices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,7 +30,8 @@ namespace BookStore
             services.AddControllersWithViews();
             services.AddDbContext<BookStoreDbContext>();
             services.AddScoped<ICatalog, Catalog>();
-            services.AddScoped<ICart, Cart>();
+            services.AddScoped<Cart>();
+            services.AddScoped<IOrderProcessing, OrderProcessing>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSession();
         }

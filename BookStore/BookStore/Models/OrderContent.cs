@@ -9,6 +9,6 @@ namespace BookStore.Models
         public Guid BookId { get; set; }
         public decimal Price { get; set; }
         public Book book { get; set; }
-        public Order Order { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

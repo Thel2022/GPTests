@@ -11,9 +11,9 @@ namespace BookStore.Sevices
     {
         private readonly BookStoreDbContext _dbcontext;
 
-        public Catalog(BookStoreDbContext _content)
+        public Catalog(BookStoreDbContext _context)
         {
-            _dbcontext = _content;
+            _dbcontext = _context;
         }
         public IEnumerable<Book> Books => _dbcontext.BooksTb;
         public Book GetAll(Guid id) => _dbcontext.BooksTb.FirstOrDefault(p => p.Id == id);

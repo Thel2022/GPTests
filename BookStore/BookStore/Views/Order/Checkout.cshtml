@@ -1,5 +1,7 @@
 ﻿@using BookStore.ViewModels;
-@model OrderViewModel
+@using System.Globalization;
+@model OrderViewModel;
+
 <style>
     .form-group
     {
@@ -14,8 +16,8 @@
 
 <div class="row bg-white offset-3 col-md-5 g-3">
     <h4 class="header text">Оформление заказа</h4>
-    <p class="text">После обработки заказа вы будете переведены на страницу оплаты.</p>
-<form asp-action="OrderSecondStep" method="post" class="form-horizontal">
+    <p class="text">Введите своё имя и адрес электронной почты.</p>
+<form asp-action="Checkout" method="post" class="form-horizontal">
   <div class="form-group">
     <input asp-for="order.ClientName" class="form-control" placeholder="Введите свое имя">
   </div>
@@ -24,4 +26,3 @@
   </div>
   <input class="btn btn-success" type="submit" value="Оформить заказ"/>
 </form>
-</div>

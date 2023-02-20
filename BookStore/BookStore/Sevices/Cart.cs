@@ -9,21 +9,22 @@ using System.Linq;
 
 namespace BookStore.Sevices
 {
-    public class Cart : ICart
+    public class Cart
     {
         private readonly BookStoreDbContext _dbcontext;
         public string CartId { get; set; }
-        public IEnumerable<OrderedBooksInCart> BooksInCart { get; set; }
+        public List<OrderedBooksInCart> BooksInCart { get; set; }
         public Cart(BookStoreDbContext _content)
         {
             _dbcontext = _content;
         }
-        public Cart GetCart(IServiceProvider services)
+        static public Cart GetCart(IServiceProvider services)
         {
             ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+            var context = services.GetService<BookStoreDbContext>();
             string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
             session.SetString("CartId", cartId);
-            return new Cart(_dbcontext) { CartId = cartId };
+            return new Cart(context) { CartId = cartId };
         }
         public void AddToCart(Book book)
         {
@@ -45,7 +46,7 @@ namespace BookStore.Sevices
             _dbcontext.OrderedBooksInCartTb.Remove(itemToDelete);
             _dbcontext.SaveChanges();
         }
-        public IEnumerable<OrderedBooksInCart> BooksInThisCart()
+        public List<OrderedBooksInCart> BooksInThisCart()
         {
             return _dbcontext.OrderedBooksInCartTb.Where(c => c.CartId == CartId).Include(s => s.Book).ToList();
         }

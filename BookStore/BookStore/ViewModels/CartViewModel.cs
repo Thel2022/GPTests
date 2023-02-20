@@ -5,6 +5,6 @@ namespace BookStore.ViewModels
 {
     public class CartViewModel
     {
-        public ICart cart { get; set; }
+        public Cart cart { get; set; }
     }
 }
