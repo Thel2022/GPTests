@@ -1,6 +1,10 @@
+using BookStore.Interfaces;
+using BookStore.Models;
+using BookStore.Sevices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,7 +26,14 @@ namespace BookStore
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<BookStoreDbContext>(options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
             services.AddControllersWithViews();
+            services.AddDbContext<BookStoreDbContext>();
+            services.AddScoped<ICatalog, Catalog>();
+            services.AddScoped<Cart>();
+            services.AddScoped<IOrderProcessing, OrderProcessing>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSession();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -38,6 +49,7 @@ namespace BookStore
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 
@@ -49,6 +61,10 @@ namespace BookStore
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                BookStoreDbContext content = scope.ServiceProvider.GetRequiredService<BookStoreDbContext>();
+            }
         }
     }
 }

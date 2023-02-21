@@ -1,0 +1,77 @@
+﻿@using BookStore.ViewModels;
+@using System.Globalization;
+@model CartViewModel;
+<style>
+    .tbl-img
+    {
+        width: 100%;
+        max-width: 150px !important;
+    }
+    .container
+    {
+        margin-top: 50px;
+        margin-bottom: 100px;
+    }
+    .container {
+  padding: 2rem 0rem;
+}
+    h4 {
+    margin: 2rem 0rem 1rem;
+}
+    img {
+        margin-top: 5px;
+        margin-bottom: 5x;
+  }
+    .table-img-delete
+       {
+         margin-top: 7px;
+       }
+</style>
+
+<div class="container offset-3">
+    <h3 class="text g-3">Корзина</h3>
+    @if (Model.cart.BooksInCart.Count() == 0)
+    {
+        <p class="text">Корзина пока что пуста</p>
+    }
+    else
+    {
+
+    <div class="row">
+    <div class="col-8">
+		<table class="table"> 
+  
+
+		  <tbody>
+        
+
+        @foreach (var el in Model.cart.BooksInCart)
+        {         
+                <tr>
+
+		      <td class="w-25">
+			     <div id="tbl-img"><img class="tbl-img rounded shadow-sm" src="@el.Book.Cover" alt="@el.Book.Title" style="max-width: 300px"/></div>
+		      </td>
+
+		      <td class="align-middle"><p class="price text-text-center">@el.Book.Title </p></td>
+		      <td class="align-middle"><p class="text-text-center">@el.Book.Price.ToString("c", new CultureInfo("ru-RU"))</td>
+              <td align="right"><a asp-controller="Cart" asp-action="deleteFromCart" asp-route-id="@el.Id"><img class="table-img-delete" src="/icons/x-lg.svg" alt="Удалить" width="21" height="21"></a></td> 
+		    </tr>
+        }
+        		  </tbody>
+		</table>  
+        @{
+            decimal res = 0;
+            foreach (var el in Model.cart.BooksInCart)
+        {
+                    decimal res1 = el.Book.Price;
+                    res += res1;
+        }
+         <h5 class="alert alert-dark text-dark">Итого: @res.ToString("c", new CultureInfo("ru-RU"))</h5>
+        <hr />
+        }
+        
+    <a class="btn btn-success" href="/Order/Checkout">Перейти к оформлению заказа</a>
+        </div>
+  </div>
+    }
