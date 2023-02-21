@@ -10,17 +10,13 @@ namespace BookStore.Controllers
 {
     public class OrderController : Controller
     {
-        private readonly IOrderProcessing _orderProc;
         private readonly Cart _cart;
-        private bool valid;      
+        private readonly IOrderProcessing _orderProc;
+        private bool valid;     
 
         private Order GetData(Order order)
         {
             _cart.BooksInCart = _cart.BooksInThisCart(); 
-            if (_cart.BooksInCart.Count == 0)
-            {
-                ModelState.AddModelError("", "Отсутствуют товары в корзине"); 
-            }
 
             if (ModelState.IsValid)
             {
@@ -30,10 +26,10 @@ namespace BookStore.Controllers
             return order;
         }
 
-        public OrderController(IOrderProcessing orderProc, Cart cart)
+        public OrderController(Cart cart, IOrderProcessing orderProc)
         {
-            _orderProc = orderProc;
             _cart = cart;
+            _orderProc = orderProc;
             valid = false;
         }
 

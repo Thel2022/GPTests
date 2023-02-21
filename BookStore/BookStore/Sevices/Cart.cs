@@ -14,9 +14,9 @@ namespace BookStore.Sevices
         private readonly BookStoreDbContext _dbcontext;
         public string CartId { get; set; }
         public List<OrderedBooksInCart> BooksInCart { get; set; }
-        public Cart(BookStoreDbContext _content)
+        public Cart(BookStoreDbContext _context)
         {
-            _dbcontext = _content;
+            _dbcontext = _context;
         }
         static public Cart GetCart(IServiceProvider services)
         {
